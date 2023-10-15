@@ -16,7 +16,8 @@ class _WalletHomeState extends State<WalletHome> {
         "https://c8.alamy.com/comp/KNW1BJ/money-seamless-pattern-line-style-finances-endless-background-business-KNW1BJ.jpg";
     var visa =
         "https://static.vecteezy.com/system/resources/previews/022/100/873/original/visa-logo-transparent-free-png.png";
-
+    var pimg =
+        "https://media.istockphoto.com/id/1246254218/pt/vetorial/glowing-neon-line-create-account-screen-icon-isolated-on-black-background-vector.jpg?s=612x612&w=0&k=20&c=nScORF5XsUV2WAUMD_eHGJFohlP4GBdreCacmr75pNA=";
     Widget CARD(int n, int m, int y) {
       return Padding(
         padding: const EdgeInsets.all(15.0),
@@ -36,25 +37,117 @@ class _WalletHomeState extends State<WalletHome> {
                 left: 15,
                 child: Text(
                   "Card No. ",
-                  style: TextStyle(color: Colors.black.withOpacity(0.5)),
+                  style: TextStyle(
+                      color: Colors.black.withOpacity(0.5), fontSize: 20),
                 ),
               ),
               Positioned(
-                top: 40,
-                left: 15,
-                child: Text("**** **** **** ${n}"),
-              ),
-              Positioned(
-                top: 70,
+                top: 55,
                 left: 15,
                 child: Text(
-                  "Expires  ${m}/${y}",
-                  style: TextStyle(color: Colors.black.withOpacity(0.5)),
+                  "**** **** **** ${n}",
+                  style: TextStyle(fontSize: 30),
                 ),
               ),
               Positioned(
-                  top: 10, left: 10, child: Image(image: NetworkImage(visa))),
+                top: 110,
+                left: 15,
+                child: Row(
+                  children: [
+                    Text(
+                      "Expires",
+                      style: TextStyle(
+                          color: Colors.black.withOpacity(0.5), fontSize: 20),
+                    ),
+                    Text(
+                      "  ${m}/${y}",
+                      style: TextStyle(
+                          color: Colors.black.withOpacity(0.5), fontSize: 30),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                  top: 10,
+                  right: 5,
+                  child: Container(
+                    height: 50,
+                    width: 80,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(image: NetworkImage(visa))),
+                  )),
             ],
+          ),
+        ),
+      );
+    }
+
+    Widget PeopleCard(var img, var name) {
+      return Padding(
+        padding: const EdgeInsets.all(6.0),
+        child: GestureDetector(
+          onTap: () {},
+          child: Card(
+            elevation: 5,
+            color: Colors.grey.shade100,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: Container(
+              height: height * 0.15,
+              width: width * 0.25,
+              child: Center(
+                child: Column(
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          radius: 30,
+                          backgroundImage: NetworkImage(img),
+                        )),
+                    Text(
+                      "${name}",
+                      style: TextStyle(color: Colors.black.withOpacity(0.5)),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget AddPeopleCard() {
+      return Padding(
+        padding: const EdgeInsets.all(6.0),
+        child: GestureDetector(
+          onTap: () {},
+          child: Card(
+            elevation: 5,
+            color: Colors.grey.shade100,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: Container(
+              height: height * 0.15,
+              width: width * 0.25,
+              child: Center(
+                child: Column(
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Icon(
+                          Icons.add_circle,
+                          color: Colors.blue,
+                          size: 40,
+                        )),
+                    Text(
+                      "Add Money",
+                      style: TextStyle(color: Colors.black.withOpacity(0.5)),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
       );
@@ -69,7 +162,7 @@ class _WalletHomeState extends State<WalletHome> {
               alignment: AlignmentDirectional.topStart,
               children: [
                 Container(
-                  height: height * 0.6,
+                  height: height * 0.53,
                   child: Column(
                     children: [
                       Card(
@@ -98,16 +191,22 @@ class _WalletHomeState extends State<WalletHome> {
                                     right: 10,
                                     child: IconButton(
                                       onPressed: () {},
-                                      icon: Icon(Icons.notifications,
-                                          color: Colors.black),
+                                      icon: Icon(
+                                        Icons.notifications,
+                                        color: Colors.black,
+                                        size: 30,
+                                      ),
                                     )),
                                 Positioned(
                                     top: height * 0.1,
                                     right: 10,
                                     child: IconButton(
                                       onPressed: () {},
-                                      icon:
-                                          Icon(Icons.add, color: Colors.black),
+                                      icon: Icon(
+                                        Icons.add,
+                                        color: Colors.black,
+                                        size: 30,
+                                      ),
                                     )),
                               ],
                             ),
@@ -134,7 +233,34 @@ class _WalletHomeState extends State<WalletHome> {
                   ),
                 )
               ],
-            )
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Text(
+                  "    Send Money",
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(
+                  width: width * 0.51,
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.keyboard_arrow_right),
+                )
+              ],
+            ),
+            Container(
+              height: height * 0.16,
+              width: width,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (context, index) =>
+                      (index == 0) ? AddPeopleCard() : PeopleCard(pimg, "Roy")),
+            ),
           ],
         ),
       ),
